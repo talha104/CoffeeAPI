@@ -1,16 +1,23 @@
-const fetchData = async () => {
+
+const gallery = document.getElementById("gallery");
+const hotButton = document.getElementById("hot");
+const icedButton = document.getElementById("iced");
+
+
+
+const fetchData = async (url) => {
 
     try {
 
-        const response = await fetch("https://api.sampleapis.com/coffee/hot");
+        gallery.innerHTML = "";
+
+        const response = await fetch(url);
         
         if (!response.ok) {
             throw new Error("Could not fetch resource");
         }
         
         const data = await response.json();
-
-        const gallery = document.getElementById("gallery");
 
         data.forEach(item => {
 
@@ -43,4 +50,13 @@ const fetchData = async () => {
 
 }
 
-fetchData();
+
+hotButton.addEventListener("click", () => {
+    fetchData("https://api.sampleapis.com/coffee/hot");
+});
+
+icedButton.addEventListener("click", () => {
+    fetchData("https://api.sampleapis.com/coffee/iced");
+});
+
+fetchData("https://api.sampleapis.com/coffee/hot");
