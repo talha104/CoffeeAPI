@@ -9,7 +9,14 @@ const fetchData = async () => {
         }
         
         const data = await response.json();
-        console.log(data);
+
+        const gallery = document.getElementById("gallery");
+
+        const img = document.createElement("img");
+        img.src = data[0].image;
+
+        gallery.appendChild(img);
+        
 
     } catch (err) {
 
