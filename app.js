@@ -12,10 +12,27 @@ const fetchData = async () => {
 
         const gallery = document.getElementById("gallery");
 
-        const img = document.createElement("img");
-        img.src = data[0].image;
+        data.forEach(item => {
 
-        gallery.appendChild(img);
+            const card = document.createElement("div");
+            card.className = "card";
+
+            const img = document.createElement("img");
+            img.src = item.image;
+
+            const title = document.createElement("h3");
+            title.className = "title";
+            title.textContent = item.title;
+
+            const description = document.createElement("p");
+            description.className = "description";
+            description.textContent = item.description;
+
+            card.appendChild(title);
+            card.appendChild(img);
+            card.appendChild(description);
+            gallery.appendChild(card);
+        });
         
 
     } catch (err) {
